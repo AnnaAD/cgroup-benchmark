@@ -6,6 +6,8 @@
 #include <strings.h> // bzero()
 #include <sys/socket.h>
 #include <unistd.h> // read(), write(), close()
+#include <time.h>
+
 #define MAX 80
 #define PORT 8080
 #define SA struct sockaddr
@@ -21,8 +23,18 @@ void func(int sockfd)
 		strcpy(buff, "msg");
 		write(sockfd, buff, sizeof(buff));
 		bzero(buff, sizeof(buff));
+        struct timespec t0, t1;
+
+        // Get starting time
+        timespec_get(&t0, TIME_UTC);  // C11 feature
 		read(sockfd, buff, sizeof(buff));
-		printf("Response : %s", buff);
+
+        timespec_get(&t1, TIME_UTC);
+        // Compute difference in nanoseconds
+        long dns = t1.tv_nsec - t0.tv_nsec;
+        time_t ltime;
+		time(&ltime);
+		printf("%s - Latency : %ld ns ",ctime(&ltime),  dns);
 		if ((strncmp(buff, "exit", 4)) == 0) {
 			printf("Client Exit...\n");
 			break;
@@ -30,7 +42,7 @@ void func(int sockfd)
 	}
 }
 
-int main()
+int main(int argc, char **argv )
 {
 	int sockfd, connfd;
 	struct sockaddr_in servaddr, cli;
@@ -47,7 +59,7 @@ int main()
 
 	// assign IP, PORT
 	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	servaddr.sin_addr.s_addr = inet_addr(argv[1]);
 	servaddr.sin_port = htons(PORT);
 
 	// connect the client socket to server socket
