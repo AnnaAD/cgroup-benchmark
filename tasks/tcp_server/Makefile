@@ -3,9 +3,6 @@ all: server client
 CC=gcc
 CFLAGS=-I.
 
-clean:
-	rm *.o
-	
 %.o: %.c 
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -14,3 +11,6 @@ server: server.o
 
 client: client.o
 	$(CC) -o $@ $^ $(CFLAGS)
+
+clean:
+	rm *.o
