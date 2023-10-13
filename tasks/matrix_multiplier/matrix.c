@@ -65,19 +65,20 @@ int main(int argc, char *argv[]) {
         matrix2[i] = (int *)malloc(cols2 * sizeof(int));
     }
 
+    printf("Generating Matrices...");
     generate_random_matrix(rows1, cols1, matrix1);
+    printf("Matrix 1 done.\n");
     generate_random_matrix(cols1, cols2, matrix2);
+    printf("Matrix 2 done.\n");
 
-    printf("Matrix 1:\n");
-    display_matrix(rows1, cols1, matrix1);
+    //display_matrix(rows1, cols1, matrix1);
 
-    printf("Matrix 2:\n");
-    display_matrix(cols1, cols2, matrix2);
+    //display_matrix(cols1, cols2, matrix2);
 
     multiply_matrices(rows1, cols1, matrix1, cols1, cols2, matrix2, result);
 
     printf("Resultant Matrix:\n");
-    display_matrix(rows1, cols2, result);
+    //display_matrix(rows1, cols2, result);
 
     // Free allocated memory
     for (int i = 0; i < rows1; i++) {
