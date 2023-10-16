@@ -1,6 +1,8 @@
+ifconfig | grep 'inet addr:' | cut -d: -f2
 
 # start server running
 ./tasks/tcp_server/server > fig1-server.out &
+
 
 until [[ $(wc -l < fig1-server.out) -gt 5 ]]
 do
@@ -16,14 +18,21 @@ echo $(date)
 echo "starting matrix multiply"
 
 
-for i in {1..5}
+for i in {1..$1}
 do
-    ./tasks/matrix_multiplier/matrix 1000 100000 100000&
+    ./tasks/matrix_multiplier/matrix 1000 1000 1000&
+    pids[${i}]=$!
     echo $(date)
-    sleep 10
+    #sleep 10
 done
 
-sleep 200
+echo "waiting for multiplies"
+# wait for all pids
+for pid in ${pids[*]}; do
+    wait $pid
+done
+echo $(date)
+
 
 
 

@@ -8,3 +8,6 @@ CFLAGS= -I. -lpthread
 
 manager: manager.o
 	$(CC) -o $@ $^ $(CFLAGS)
+
+server:
+	source run-fig1-experiment-server.sh 10

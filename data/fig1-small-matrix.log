@@ -1,0 +1,23 @@
+-bash: fig1-server.out: No such file or directory
+waiting for client...
+waiting for client...
+waiting for client...
+waiting for client...
+Fri Oct 13 07:54:43 AM MDT 2023
+Fri Oct 13 07:55:13 AM MDT 2023
+starting matrix multiply
+Fri Oct 13 07:55:13 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Matrix 2 done.
+Fri Oct 13 07:55:23 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Matrix 2 done.
+Fri Oct 13 07:55:33 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Matrix 2 done.
+Fri Oct 13 07:55:43 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Matrix 2 done.
+Fri Oct 13 07:55:53 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Matrix 2 done.
