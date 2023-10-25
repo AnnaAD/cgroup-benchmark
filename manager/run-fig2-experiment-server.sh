@@ -5,8 +5,8 @@ rm -rf ps.out
 # start server running
 ./tasks/tcp_server/server > fig1-server.out &
 
-mkdir /cgroup/cpu_and_mem/group1
-mkdir /cgroup/cpu_and_mem/group2
+cgcreate -g *:group1
+cgcreate -g *:group2
 
 cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group1
 cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group2
