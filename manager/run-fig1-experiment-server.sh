@@ -1,4 +1,4 @@
-ifconfig | grep 'inet addr:' | cut -d: -f2
+ifconfig | grep 'inet ' | cut -d: -f2
 
 # start server running
 ./tasks/tcp_server/server > fig1-server.out &

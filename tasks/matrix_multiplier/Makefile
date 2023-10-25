@@ -8,3 +8,6 @@ CFLAGS=-I.
 
 matrix: matrix.o
 	$(CC) -o $@ $^ $(CFLAGS)
+
+clean:
+	rm *.o

@@ -1,4 +1,4 @@
-ifconfig | grep 'inet addr:' | cut -d: -f2
+ifconfig | grep 'inet ' | cut -d: -f2
 
 
 mkdir /cgroup/cpu_and_mem/group1
@@ -8,10 +8,10 @@ cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group1
 cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group2
 
 # start server running
-cgexec -g cpu:group1 ./tasks/tcp_server/server > fig1-server.out &
+cgexec -g cpu:group1 ./tasks/tcp_server/server > fig2-server.out &
 
 
-until [[ $(wc -l < fig1-server.out) -gt 5 ]]
+until [[ $(wc -l < fig2-server.out) -gt 5 ]]
 do
     echo "waiting for client..."
     sleep 1
