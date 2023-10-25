@@ -8,8 +8,8 @@ rm -rf ps.out
 cgcreate -g *:group1
 cgcreate -g *:group2
 
-cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group1
-cgset -r cpu.shares=50 /cgroup/cpu_and_mem/group2
+cgset -r cpu.shares=50 group1
+cgset -r cpu.shares=50 group2
 
 # start server running
 cgexec -g cpu:group1 ./tasks/tcp_server/server > fig2-server.out &
