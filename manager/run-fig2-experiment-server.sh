@@ -1,5 +1,9 @@
 ifconfig | grep 'inet ' | cut -d: -f2
 
+rm -rf ps.out
+./manager/monitor.sh &
+# start server running
+./tasks/tcp_server/server > fig1-server.out &
 
 mkdir /cgroup/cpu_and_mem/group1
 mkdir /cgroup/cpu_and_mem/group2

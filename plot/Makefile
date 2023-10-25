@@ -16,3 +16,6 @@ fig1-1000-20:
 
 fig1-2000-20:
 	venv/bin/python fig1.py ../data/fig1-client-2000-20.out ../data/fig1-2000-20-server.log
+
+fig1-2000-20-delay50ms:
+	venv/bin/python fig1.py ../data/fig1-client-delay50ms.out ../data/fig1-2000-20-server-delay50ms.log
