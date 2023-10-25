@@ -1,5 +1,7 @@
 ifconfig | grep 'inet ' | cut -d: -f2
 
+rm -rf ps.out
+./manager/monitor.sh &
 # start server running
 ./tasks/tcp_server/server > fig1-server.out &
 
@@ -12,7 +14,7 @@ done
 
 # time check experiment start, wait to start chaos.
 echo $(date)
-sleep 30 
+sleep 30
 
 echo $(date)
 echo "starting matrix multiply"
@@ -20,7 +22,7 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    ./tasks/matrix_multiplier/matrix $2 $2 $2&
+    ./tasks/matrix_multiplier/matrix $2 $2 $2 &
     pids[${i}]=$!
     echo $(date)
     #sleep 10
@@ -32,8 +34,3 @@ for pid in ${pids[*]}; do
     wait $pid
 done
 echo $(date)
-
-
-
-
-
