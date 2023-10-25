@@ -25,9 +25,9 @@ echo $(date)
 echo "starting matrix multiply"
 
 
-for i in {1..$1}
+for i in $(eval echo {1..${1}})
 do
-    cgexec -g cpu:group2 ./tasks/matrix_multiplier/matrix 1000 1000 1000&
+    cgexec -g cpu:group2 ./tasks/matrix_multiplier/matrix $2 $2 $2&
     pids[${i}]=$!
     echo $(date)
     #sleep 10

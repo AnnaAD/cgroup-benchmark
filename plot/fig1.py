@@ -53,8 +53,9 @@ def plot_latency_over_time(data, log_times):
 
         # look for x value to plot what time key log times occured
         for i,d in enumerate(data):
-            if(d["time"][:-5] == l["time"][:len(d["time"])-5]):
+            if(d["time"][:-5] == l["time"][:len(d["time"])-5] or (d["time"].split(":")[1] +d["time"].split(":")[2].split(" ")[0]  == l["time"].split(":")[1] +l["time"].split(":")[2].split(" ")[0])):
                 timestamp_points.append(i)
+                print(d["time"])
                 break
 
     print(timestamp_points)
