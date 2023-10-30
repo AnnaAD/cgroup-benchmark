@@ -19,3 +19,18 @@ fig1-2000-20:
 
 fig1-2000-20-delay50ms:
 	venv/bin/python fig1.py ../data/fig1-client-delay50ms.out ../data/fig1-2000-20-server-delay50ms.log
+
+fig2-1000-20-delay50ms:
+	venv/bin/python fig1.py ../data/fig2-client.out ../data/fig2-1000-20-server.log
+
+fig2-2000-20-delay50ms:
+	venv/bin/python fig1.py ../data/fig2-client-2000-20.out ../data/fig2-2000-20-server.log
+
+fig2-2000-20-delay50ms-weighted:
+	venv/bin/python fig1.py ../data/fig2-2000-20-weighted5050/fig2-client.out ../data/fig2-2000-20-weighted5050/server.log
+
+fig2-2000-20-delay50ms-weighted-991:
+	venv/bin/python fig1.py ../data/fig2-2000-20-weighted991/fig2-client.out ../data/fig2-2000-20-weighted991/server.log
+
+fig2-2000-20-delay50ms-weighted-2048:
+	venv/bin/python fig1.py ../data/fig2-2000-20-weighted20481024/fig2-client.out ../data/fig2-2000-20-weighted20481024/server.log

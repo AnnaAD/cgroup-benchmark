@@ -21,7 +21,6 @@ def parse_log_timestamps(file_path):
                 data.append({"time": t})
             i += 1
             
-    
     return data
 
 def parse_latency_data(file_path):

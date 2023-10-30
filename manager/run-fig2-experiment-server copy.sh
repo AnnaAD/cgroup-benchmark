@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ifconfig | grep 'inet ' | cut -d: -f2
 
 rm -rf ps.out
@@ -5,15 +7,15 @@ rm -rf ps.out
 # start server running
 ./tasks/tcp_server/server > fig1-server.out &
 
-cgcreate -g *:group1
-cgcreate -g *:group2
+sudo mkdir /sys/fs/cgroup/group1
+sudo mkdir /sys/fs/cgroup/group2
 
-cgset -r cpu.shares=50 group1
-cgset -r cpu.shares=50 group2
+echo $3 > /sys/fs/cgroup/group1/cpu.weight
+echo $4 > /sys/fs/cgroup/group2/cpu.weight
 
 # start server running
-cgexec -g cpu:group1 ./tasks/tcp_server/server > fig2-server.out &
-
+./tasks/tcp_server/server > fig2-server.out &
+echo $! > /sys/fs/cgroup/group1/cgroup.procs
 
 until [[ $(wc -l < fig2-server.out) -gt 5 ]]
 do
@@ -23,7 +25,7 @@ done
 
 # time check experiment start, wait to start chaos.
 echo $(date)
-sleep 30 
+sleep 30
 
 echo $(date)
 echo "starting matrix multiply"
@@ -31,8 +33,9 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    cgexec -g cpu:group2 ./tasks/matrix_multiplier/matrix $2 $2 $2&
+    ./tasks/matrix_multiplier/matrix $2 $2 $2&
     pids[${i}]=$!
+    echo $! > /sys/fs/cgroup/group2/cgroup.procs
     echo $(date)
     #sleep 10
 done
@@ -43,8 +46,3 @@ for pid in ${pids[*]}; do
     wait $pid
 done
 echo $(date)
-
-
-
-
-
