@@ -23,4 +23,4 @@ while True:
     end_time = time.time()
 
     # Print the time taken
-    print(f"{time.strftime('%b %d %Y %H:%M:%S', time.time())} {N}x{N} matrices: {end_time - start_time} seconds")
+    print(f"{time.strftime('%b %d %Y %H:%M:%S', time.localtime(time.time()))} {N}x{N} matrices: {end_time - start_time} seconds")

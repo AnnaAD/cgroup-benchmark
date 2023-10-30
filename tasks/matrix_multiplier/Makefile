@@ -16,5 +16,5 @@ venv:
 	python3 -m venv venv
 	venv/bin/pip install numpy
 
-python-matrix:
-	venv/bin/python matrix.py
+python-matrix: venv
+	venv/bin/python matrix.py 200
