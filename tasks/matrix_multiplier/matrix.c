@@ -34,7 +34,7 @@ void display_matrix(int rows, int cols, int **matrix) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) {
+    if (argc != 5) {
         printf("Usage: %s <rows1> <cols1> <cols2> <run forever? 0/1>\n", argv[0]);
         return 1;
     }
@@ -86,10 +86,10 @@ int main(int argc, char *argv[]) {
         timespec_get(&t1, TIME_UTC);
         
         // Compute difference in seconds
-        long dns = t1.tv_sec - t0.tv_sec;
+        float dns = float(t1.tv_usec - t0.tv_usec) / 1000000;
         time_t ltime;
         time(&ltime);
-        printf("%s - Time to multiply : %ld ns ",ctime(&ltime),  dns);
+        printf("%s - Time to multiply : %ld us ",ctime(&ltime),  dns);
 
     } while(run_);
 
