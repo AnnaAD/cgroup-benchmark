@@ -34,7 +34,7 @@ do
     ./tasks/matrix_multiplier/matrix $2 $2 $2&
     pids[${i}]=$!
     echo ${pids[${i}]} > /sys/fs/cgroup/group2/cgroup.procs
-    chrt -i 0 ${pids[${i}]}
+    chrt -i -p 0 ${pids[${i}]}
     echo ${pids[${i}]}
     echo $(date)
     #sleep 10
