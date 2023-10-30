@@ -31,7 +31,7 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    venv/bin/python tasks/matrix_multiplier/matrix.py $2&
+    venv/bin/python tasks/matrix_multiplier/matrix.py $2 > mm-${i}.out &
     pids[${i}]=$!
     echo ${pids[${i}]} > /sys/fs/cgroup/group2/cgroup.procs
     chrt -i -p 0 ${pids[${i}]}
