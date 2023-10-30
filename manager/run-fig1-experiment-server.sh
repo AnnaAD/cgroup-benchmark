@@ -22,7 +22,7 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    ./tasks/matrix_multiplier/matrix $2 $2 $2 &
+    venv/bin/python tasks/matrix_multiplier/matrix.py $2 &
     pids[${i}]=$!
     echo $(date)
     #sleep 10
