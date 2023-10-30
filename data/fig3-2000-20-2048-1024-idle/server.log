@@ -6,40 +6,40 @@ mkdir: cannot create directory ‘/sys/fs/cgroup/group1’: File exists
 mkdir: cannot create directory ‘/sys/fs/cgroup/group2’: File exists
 waiting for client...
 waiting for client...
-Mon Oct 30 08:50:01 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
+waiting for client...
+waiting for client...
+waiting for client...
+Mon Oct 30 09:00:05 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
 starting matrix multiply
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
 Generating Matrices...Matrix 1 done.
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
-Mon Oct 30 08:50:31 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
 Generating Matrices...Matrix 1 done.
-Mon Oct 30 08:50:31 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Generating Matrices...Matrix 1 done.
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
+Mon Oct 30 09:00:35 AM MDT 2023
 waiting for multiplies
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
-Generating Matrices...Matrix 1 done.
-Generating Matrices...Matrix 1 done.
-Generating Matrices...Matrix 1 done.
-Generating Matrices...Matrix 1 done.
 Matrix 2 done.
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
@@ -48,15 +48,14 @@ Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
 Matrix 2 done.
-Generating Matrices...Matrix 1 done.
-Generating Matrices...Matrix 1 done.
-Matrix 2 done.
-Matrix 2 done.
-Matrix 2 done.
-Matrix 2 done.
 Matrix 2 done.
 Generating Matrices...Matrix 1 done.
 Generating Matrices...Matrix 1 done.
+Generating Matrices...Matrix 1 done.
+Generating Matrices...Matrix 1 done.
+Generating Matrices...Matrix 1 done.
+Generating Matrices...Matrix 1 done.
+Generating Matrices...Matrix 1 done.
 Matrix 2 done.
 Matrix 2 done.
 Matrix 2 done.
@@ -70,6 +69,10 @@ Matrix 2 done.
 Matrix 2 done.
 Matrix 2 done.
 Matrix 2 done.
+Matrix 2 done.
+Matrix 2 done.
+Matrix 2 done.
+Matrix 2 done.
 Resultant Matrix:
 Resultant Matrix:
 Resultant Matrix:
@@ -90,4 +93,4 @@ Resultant Matrix:
 Resultant Matrix:
 Resultant Matrix:
 Resultant Matrix:
-Mon Oct 30 08:51:37 AM MDT 2023
+Mon Oct 30 09:01:41 AM MDT 2023
