@@ -33,9 +33,9 @@ for i in $(eval echo {1..${1}})
 do
     ./tasks/matrix_multiplier/matrix $2 $2 $2&
     pids[${i}]=$!
-    chrt -i -p 0 ${pids[${i}]}
-    echo ${pids[${i}]}
     echo ${pids[${i}]} > /sys/fs/cgroup/group2/cgroup.procs
+    #chrt -i -p 16 ${pids[${i}]}
+    echo ${pids[${i}]}
     echo $(date)
     #sleep 10
 done
