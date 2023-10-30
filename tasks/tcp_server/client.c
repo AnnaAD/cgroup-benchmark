@@ -33,9 +33,10 @@ void func(int sockfd)
         timespec_get(&t1, TIME_UTC);
         // Compute difference in nanoseconds
         long dns = t1.tv_nsec - t0.tv_nsec;
+		long ds = (t1.tv_sec - t0.tv_sec)*1000000000;
         time_t ltime;
 		time(&ltime);
-		printf("%s - Latency : %ld ns ",ctime(&ltime),  dns);
+		printf("%s - Latency : %ld ns ",ctime(&ltime),  dns+ds);
 		if ((strncmp(buff, "exit", 4)) == 0) {
 			printf("Client Exit...\n");
 			break;

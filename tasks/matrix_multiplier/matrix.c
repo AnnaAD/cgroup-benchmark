@@ -86,10 +86,11 @@ int main(int argc, char *argv[]) {
         timespec_get(&t1, TIME_UTC);
         
         // Compute difference in seconds
-        float dns = (float)(t1.tv_usec - t0.tv_usec) / 1000000;
+        float dns = (float)(t1.tv_nsec - t0.tv_nsec) / 1000000000;
+        float ds = (float)(t1.tv_sec - t0.tv_sec);
         time_t ltime;
         time(&ltime);
-        printf("%s - Time to multiply : %f s ",ctime(&ltime),  dns);
+        printf("%s - Time to multiply : %f s ",ctime(&ltime),  dns + ds);
 
     } while(run_);
 
