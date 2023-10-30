@@ -42,3 +42,6 @@ fig3-2000-20-2048-1024-idle:
 fig2-2000-20-2048-1024-rerun:
 	venv/bin/python fig1.py ../data/fig2-2000-20-2048-1024-rerun/client-fig3.out ../data/fig2-2000-20-2048-1024-rerun/server.log
 
+fig3-2000-20-nocgroup-idle:
+	venv/bin/python fig1.py ../data/fig3-2000-20-nocgroup-idle/client-fig3.out ../data/fig3-2000-20-nocgroup-idle/server.log
+

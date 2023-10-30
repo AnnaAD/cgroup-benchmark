@@ -35,13 +35,16 @@ void display_matrix(int rows, int cols, int **matrix) {
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
-        printf("Usage: %s <rows1> <cols1> <cols2>\n", argv[0]);
+        printf("Usage: %s <rows1> <cols1> <cols2> <run forever? 0/1>\n", argv[0]);
         return 1;
     }
 
     int rows1 = atoi(argv[1]);
     int cols1 = atoi(argv[2]);
     int cols2 = atoi(argv[3]);
+
+    int run_ = atoi(argv[1]);
+
 
     // Check if dimensions are valid for matrix multiplication
     if (rows1 <= 0 || cols1 <= 0 || cols2 <= 0) {
@@ -65,20 +68,30 @@ int main(int argc, char *argv[]) {
         matrix2[i] = (int *)malloc(cols2 * sizeof(int));
     }
 
-    printf("Generating Matrices...");
-    generate_random_matrix(rows1, cols1, matrix1);
-    printf("Matrix 1 done.\n");
-    generate_random_matrix(cols1, cols2, matrix2);
-    printf("Matrix 2 done.\n");
+    do {
+        struct timespec t0, t1;
 
-    //display_matrix(rows1, cols1, matrix1);
+        // Get starting time
+    
+        printf("Generating Matrices...");
+        generate_random_matrix(rows1, cols1, matrix1);
+        printf("Matrix 1 done.\n");
+        generate_random_matrix(cols1, cols2, matrix2);
+        printf("Matrix 2 done.\n");
 
-    //display_matrix(cols1, cols2, matrix2);
+        timespec_get(&t0, TIME_UTC);  // C11 feature
 
-    multiply_matrices(rows1, cols1, matrix1, cols1, cols2, matrix2, result);
+        multiply_matrices(rows1, cols1, matrix1, cols1, cols2, matrix2, result);
 
-    printf("Resultant Matrix:\n");
-    //display_matrix(rows1, cols2, result);
+        timespec_get(&t1, TIME_UTC);
+        
+        // Compute difference in seconds
+        long dns = t1.tv_sec - t0.tv_sec;
+        time_t ltime;
+        time(&ltime);
+        printf("%s - Time to multiply : %ld ns ",ctime(&ltime),  dns);
+
+    } while(run_);
 
     // Free allocated memory
     for (int i = 0; i < rows1; i++) {
