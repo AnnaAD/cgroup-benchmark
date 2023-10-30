@@ -4,8 +4,6 @@ ifconfig | grep 'inet ' | cut -d: -f2
 
 rm -rf ps.out
 ./manager/monitor.sh &
-# start server running
-./tasks/tcp_server/server > fig1-server.out &
 
 sudo mkdir /sys/fs/cgroup/group1
 sudo mkdir /sys/fs/cgroup/group2
