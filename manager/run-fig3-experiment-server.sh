@@ -31,9 +31,9 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    ./tasks/matrix_multiplier/matrix $2 $2 $2&
+    chrt -i ./tasks/matrix_multiplier/matrix $2 $2 $2&
     pids[${i}]=$!
-    chrt -i echo $! > /sys/fs/cgroup/group2/cgroup.procs
+    echo $! > /sys/fs/cgroup/group2/cgroup.procs
     echo $(date)
     #sleep 10
 done
