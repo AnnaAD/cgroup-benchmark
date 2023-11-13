@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~/cgroup-benchmark/
 
 git pull
