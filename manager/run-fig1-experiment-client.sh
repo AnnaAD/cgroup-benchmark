@@ -11,4 +11,4 @@ for i in $(eval echo {1..${3}})
 do
     ./tasks/multi_tcp_server/client $1 > client-${i}${2}.out&
     sleep $4
-end
+done
