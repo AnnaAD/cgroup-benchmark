@@ -12,7 +12,7 @@ echo $3 > /sys/fs/cgroup/group1/cpu.weight
 echo $4 > /sys/fs/cgroup/group2/cpu.weight
 
 # start server running
-./tasks/tcp_server/server > fig3-server.out &
+./tasks/multi_tcp_server/server > fig3-server.out &
 echo $! > /sys/fs/cgroup/group1/cgroup.procs
 
 until [[ $(wc -l < fig3-server.out) -gt 5 ]]

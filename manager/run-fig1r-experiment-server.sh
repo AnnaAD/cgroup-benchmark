@@ -17,16 +17,7 @@ echo $(date)
 sleep 30
 
 echo $(date)
-echo "starting matrix multiply"
 
-
-for i in $(eval echo {1..${1}})
-do
-    tasks/matrix_multiplier/venv/bin/python tasks/matrix_multiplier/matrix.py $2 > mm-${i}.out&
-    pids[${i}]=$!
-    echo $(date)
-    #sleep 10
-done
 
 echo "waiting for multiplies"
 # wait for all pids

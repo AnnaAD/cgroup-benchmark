@@ -10,6 +10,9 @@ sudo apt-get install cgroup-tools
 cd tasks/tcp_server
 make clean; make
 
+cd tasks/multi_tcp_server
+make clean; make
+
 cd ../matrix_multiplier
 make clean; make
 
