@@ -1,22 +1,16 @@
 #!/bin/bash
+
 cd cgroup-benchmark/
 
 ifconfig | grep 'inet ' | cut -d: -f2
 
 rm -rf ps.out
 ./manager/monitor.sh &
-
-sudo mkdir /sys/fs/cgroup/group1
-sudo mkdir /sys/fs/cgroup/group2
-
-echo $4 > /sys/fs/cgroup/group1/cpu.${3}
-echo $5 > /sys/fs/cgroup/group2/cpu.${3}
-
 # start server running
-./tasks/multi_tcp_server/server > fig3-server.out &
-echo $! > /sys/fs/cgroup/group1/cgroup.procs
+./tasks/multi_tcp_server/server > fig1-server.out &
 
-until [[ $(wc -l < fig3-server.out) -gt 5 ]]
+
+until [[ $(wc -l < fig1-server.out) -gt 5 ]]
 do
     echo "waiting for client..."
     sleep 1
