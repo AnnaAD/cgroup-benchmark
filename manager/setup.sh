@@ -6,6 +6,7 @@ cd manager/
 
 chmod +x monitor.sh
 chmod +x run-fig1-experiment-server.sh
+chmod +x run-fig1r-experiment-server.sh
 chmod +x run-fig2-experiment-server.sh
 chmod +x run-fig3-experiment-server.sh
 chmod +x run-fig1-experiment-client.sh
