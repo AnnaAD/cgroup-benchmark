@@ -12,8 +12,8 @@ rm -rf ps.out
 sudo mkdir /sys/fs/cgroup/group1
 sudo mkdir /sys/fs/cgroup/group2
 
-echo $3 > /sys/fs/cgroup/group1/cpu.weight
-echo $4 > /sys/fs/cgroup/group2/cpu.weight
+echo $4 > /sys/fs/cgroup/group1/cpu.${3}
+echo $5 > /sys/fs/cgroup/group2/cpu.${3}
 
 # start server running
 ./tasks/multi_tcp_server/server > fig2-server.out &
