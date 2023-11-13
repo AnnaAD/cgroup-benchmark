@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import sys
+from datetime import datetime
 
 if len(sys.argv) != 2:
     print("Usage: python matrix_multiply.py N")
@@ -23,4 +24,4 @@ while True:
     end_time = time.time()
 
     # Print the time taken
-    print(f"{time.strftime('%b %d %Y %H:%M:%S', time.localtime(time.time()))} {N}x{N} matrices: {end_time - start_time} seconds")
+    print(f"{datetime.now().strftime('%b %d %Y %H:%M:%S.%f')} {N}x{N} matrices: {end_time - start_time} seconds")
