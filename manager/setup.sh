@@ -1,4 +1,7 @@
-cd ~/cgroup-benchmark/manager
+cd ~/cgroup-benchmark/
+
+git pull
+cd manager/
 
 chmod +x monitor.sh
 chmod +x run-fig1-experiment-server.sh
