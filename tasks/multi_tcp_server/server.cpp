@@ -14,16 +14,20 @@ void handleClient(int clientSocket) {
     std::memset(buffer, 0, sizeof(buffer));
 
     // Receive data from the client
-    int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
-    if (bytesRead < 0) {
-        perror("Error reading from client");
-    } else {
-        // Simulate some processing time (replace this with your actual server logic)
-        std::cout << "Recieved Req - " << std::endl;
 
-        // Send a response back to the client
-        send(clientSocket, "Server response", 15, 0);
+    while(true) {
+        int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
+        if (bytesRead < 0) {
+            perror("Error reading from client");
+        } else {
+            // Simulate some processing time (replace this with your actual server logic)
+            std::cout << "Recieved Req - " << std::endl;
+
+            // Send a response back to the client
+            send(clientSocket, "Server response", 15, 0);
+        }
     }
+
 
     // Close the client socket
     close(clientSocket);

@@ -49,20 +49,22 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    while (true) {
+    for (;;) {
         auto start = std::chrono::high_resolution_clock::now();
 
         // Send a request to the server
         send(clientSocket, "Client request", 14, 0);
 
         // Receive the server response
-        recv(clientSocket, buffer, sizeof(buffer), 0);
+        int val = recv(clientSocket, buffer, sizeof(buffer), 0);
+
+        std::cout << "recv: " << val << "\n";
 
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
         std::cout << "LOG: " << getCurrentFormattedTime() << " Round trip time: " << duration.count() << " ns" << std::endl;
-        usleep(50);
+        usleep(1000);
     }
 
     // Close the client socket (not reached in this example)
