@@ -1,3 +1,5 @@
+cd ~/cgroup-benchmark/manager
+
 chmod +x monitor.sh
 chmod +x run-fig1-experiment-server.sh
 chmod +x run-fig2-experiment-server.sh
