@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-        std::cout << "LOG: " << getCurrentFormattedTime() << "Round trip time: " << duration.count() << " ns" << std::endl;
+        std::cout << "LOG: " << getCurrentFormattedTime() << " Round trip time: " << duration.count() << " ns" << std::endl;
         usleep(50);
     }
 

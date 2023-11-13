@@ -19,7 +19,7 @@ void handleClient(int clientSocket) {
         perror("Error reading from client");
     } else {
         // Simulate some processing time (replace this with your actual server logic)
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::cout << "Recieved Req - " << std::endl;
 
         // Send a response back to the client
         send(clientSocket, "Server response", 15, 0);
