@@ -1,4 +1,7 @@
+#!/bin/bash
+
 # USAGE: source ./run-fig1-experiment-client.sh <ip> <exp-name> <num clients> <delay>
+
 cd cgroup-benchmark/
 
 echo "connecting to $1"
