@@ -12,13 +12,13 @@ chmod +x run-fig1-experiment-client.sh
 sudo apt-get update
 sudo apt-get install cgroup-tools
 
-cd tasks/tcp_server
+cd ../tasks/tcp_server
 make clean; make
 
-cd tasks/multi_tcp_server
+cd ../tasks/multi_tcp_server
 make clean; make
 
-cd ../matrix_multiplier
+cd ../tasks/matrix_multiplier
 make clean; make
 
 cd ../../
