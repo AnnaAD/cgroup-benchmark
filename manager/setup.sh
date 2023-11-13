@@ -21,7 +21,7 @@ cd ~/cgroup-benchmark/tasks/multi_tcp_server
 make clean; make
 
 cd ~/cgroup-benchmark/tasks/matrix_multiplier
-make clean; make python-matrix
+make clean; make venv
 
 echo "+cpu" >> /sys/fs/cgroup/cgroup.subtree_control
 echo "+cpuset" >> /sys/fs/cgroup/cgroup.subtree_control
