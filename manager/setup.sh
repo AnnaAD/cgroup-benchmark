@@ -12,6 +12,7 @@ chmod +x run-fig1-experiment-client.sh
 
 sudo apt-get update
 sudo apt-get install cgroup-tools
+apt install python3.10-venv
 
 cd ~/cgroup-benchmark/tasks/tcp_server
 make clean; make
