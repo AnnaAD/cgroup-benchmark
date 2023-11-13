@@ -1,4 +1,5 @@
 #!/bin/bash
+cd cgroup-benchmark/
 
 ifconfig | grep 'inet ' | cut -d: -f2
 
