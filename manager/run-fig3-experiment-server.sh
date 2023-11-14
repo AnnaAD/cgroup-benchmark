@@ -15,6 +15,10 @@ echo $5 > /sys/fs/cgroup/group2/cpu.$3
 echo /sys/fs/cgroup/group1/cpu.$3
 echo /sys/fs/cgroup/group2/cpu.$3
 
+cat /sys/fs/cgroup/group1/cpu.$3
+cat /sys/fs/cgroup/group2/cpu.$3
+
+
 # start server running
 ./tasks/multi_tcp_server/server > fig3-server.out &
 echo $! > /sys/fs/cgroup/group1/cgroup.procs
