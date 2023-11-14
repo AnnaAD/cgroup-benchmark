@@ -45,6 +45,7 @@ do
     pids[${i}]=$!
     echo $! > /sys/fs/cgroup/group2/cgroup.procs
     echo $(date)
+    cat /sys/fs/cgroup/group2/cgroup.procs
     #sleep 10
 done
 
