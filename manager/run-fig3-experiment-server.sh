@@ -23,15 +23,6 @@ cat /sys/fs/cgroup/group2/cpu.$3
 ./tasks/multi_tcp_server/server > fig3-server.out &
 echo $! > /sys/fs/cgroup/group1/cgroup.procs
 
-until [[ $(wc -l < fig3-server.out) -gt 5 ]]
-do
-    echo "waiting for client..."
-    sleep 1
-done
-
-# time check experiment start, wait to start chaos.
-echo $(date)
-sleep 30
 
 echo $(date)
 echo "starting matrix multiply"
