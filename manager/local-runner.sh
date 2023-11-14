@@ -88,7 +88,7 @@ if [[ $1 == "fig2b" ]];
 then
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 2000 max "1 1" "50 100" > ../data/fig2b-new/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 2000 weight 2048 1024 > ../data/fig2b-new/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig2b 1 0&
 sleep 60
