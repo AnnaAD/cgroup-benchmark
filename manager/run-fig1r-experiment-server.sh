@@ -21,9 +21,13 @@ do
     #sleep 10
 done
 
-sleep 30
+echo $(date)
 
-# time check experiment start, wait to start chaos.
+echo "waiting for multiplies"
+# wait for all pids
+for pid in ${pids[*]}; do
+    wait $pid
+done
 echo $(date)
 
 

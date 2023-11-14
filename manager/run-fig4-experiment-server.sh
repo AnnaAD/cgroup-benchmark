@@ -33,9 +33,13 @@ do
     #sleep 10
 done
 
+echo $(date)
+
 echo "waiting for multiplies"
 # wait for all pids
 for pid in ${pids[*]}; do
     wait $pid
 done
 echo $(date)
+
+sleep 60
