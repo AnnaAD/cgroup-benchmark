@@ -74,7 +74,7 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
         plt.axvline(x=x["time"], color = "pink")
    
 
-    #ax1.set_ylim([0,1.2*10**7])
+    ax1.set_ylim([0,1.75*10**7])
     ax2 = ax1.twinx()
     ax2.plot([m["time"] for m in mm_through], [m["latency"] for m in mm_through], color = "orange", alpha = 0.6)
     #ax1.set_ylim([-1,1])

@@ -21,7 +21,8 @@ def parse_mm(file_path):
                 timestamp = match.group(1)
                 data.append({"latency": latency, "time": datetime.strptime(timestamp, "%b %d %Y %H:%M:%S.%f")})
             i += 1
-            
+
+    print(data)    
     return data
 
 def parse_log_timestamps(file_path):
@@ -77,7 +78,6 @@ def plot_latency_over_time(data, log_times, mm_through):
     ax1.set_ylim([0,1.2*10**7])
     ax2 = ax1.twinx()
     ax2.plot([m["time"] for m in mm_through], [m["latency"] for m in mm_through], color = "orange", alpha = 0.6)
-    ax2.set_ylim([0.1,.15])
     ax1.plot([d["time"] for d in data], [d["latency"] for d in data])
 
     plt.xlabel('Time')

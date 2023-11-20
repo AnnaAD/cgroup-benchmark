@@ -40,7 +40,7 @@ def parse_ps_log(file_path):
                 cpu = float(fields[0])
                 mem = float(fields[1])
                 args = ' '.join(fields[2:])
-                if cpu > 10.0:
+                if cpu > 10.0 and "matrix" in args or "server" in args:
                     process_names.append(args)
                     cpu_data.append(cpu)
                     mem_data.append(mem)
@@ -68,7 +68,7 @@ def create_combined_bar_plot(data):
             x = np.arange(len(names))
             
             # Plot CPU% bars
-            ax.bar(x*bar_width + offset, cpu_data, bar_width, label = names, alpha=0.6, color=[color_map(hash(n)%10) for n in names])
+            ax.bar(x*bar_width + offset, cpu_data, bar_width, label = names, alpha=0.6, color=["red" if "server" in n else "blue"  for n in names])
             
             # Plot MEM% bars
             #ax.bar(x + offset + bar_width/2, mem_data, bar_width, label = names,alpha=0.6, color=[color_map(hash(n)%10) for n in names])

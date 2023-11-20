@@ -63,3 +63,12 @@ fig4:
 
 fig3:
 	venv/bin/python fig-mult.py ../data/fig3/server.out ../data/fig3/mm-1.out ../data/fig3/client-*.out 
+
+fig2r:
+	venv/bin/python fig-mult.py ../data/fig2r/server.out ../data/fig2r/mm-1.out ../data/fig2r/client-*.out 
+
+fig3b:
+	venv/bin/python fig-mult.py ../data/fig3b/server.out ../data/fig3b/mm-1.out ../data/fig3b/client-*.out 
+
+fig1rnm:
+	venv/bin/python fig-mult.py ../data/fig1rnm/server.out ../data/fig1rnm/mm-1.out ../data/fig1rnm/client-*.out 
