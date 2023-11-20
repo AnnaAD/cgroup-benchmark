@@ -6,7 +6,7 @@ cd cgroup-benchmark/
 
 ifconfig | grep 'inet ' | cut -d: -f2
 
-rm -rf ps.out
+rm -rf ps.log
 ./manager/monitor.sh &
 
 sudo mkdir /sys/fs/cgroup/group1
