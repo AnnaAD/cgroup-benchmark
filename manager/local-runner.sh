@@ -129,7 +129,7 @@ IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 1 500 weight 2048 1024 > ../data/fig3/server.out&
 sleep 30
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-client.sh $IP_ADDR fig3 100 0&
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig3 100 0&
 sleep 30
 
 kill_ssh

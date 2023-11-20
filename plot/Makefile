@@ -54,3 +54,12 @@ fig2-new:
 
 fig2b-new:
 	venv/bin/python fig1-new.py ../data/fig2b-new/client-1fig2b.out ../data/fig2b-new/server.log ../data/fig2b-new/mm-1.out
+
+fig1r:
+	venv/bin/python fig-mult.py  ../data/fig1r/server.out ../data/fig1r/mm-1.out ../data/fig1r/client-*.out
+
+fig4:
+	venv/bin/python fig-mult.py ../data/fig4/server.out ../data/fig4/mm-1.out ../data/fig4/client-*.out 
+
+fig3:
+	venv/bin/python fig-mult.py ../data/fig3/server.out ../data/fig3/mm-1.out ../data/fig3/client-*.out 

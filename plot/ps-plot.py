@@ -53,7 +53,7 @@ def create_combined_bar_plot(data):
     
     # Calculate the number of groups and the width of each bar
     num_groups = len(data)
-    bar_width = 0.1
+    bar_width = 1
     
     
     # Create a color map for bars
@@ -61,24 +61,25 @@ def create_combined_bar_plot(data):
     x_ticks = []
     x_tick_names = []
 
-    idx = 0
+    offset = 0
     for key,(names, cpu_data, mem_data) in data.items():
         if(cpu_data and mem_data):
             print(names, cpu_data, mem_data)
-            offset = bar_width * idx
             x = np.arange(len(names))
             
             # Plot CPU% bars
-            ax.bar(x + offset - bar_width/2, cpu_data, bar_width, label = names, alpha=0.6, color=[color_map(hash(n)%10) for n in names])
+            ax.bar(x*bar_width + offset, cpu_data, bar_width, label = names, alpha=0.6, color=[color_map(hash(n)%10) for n in names])
             
             # Plot MEM% bars
-            ax.bar(x + offset + bar_width/2, mem_data, bar_width, label = names,alpha=0.6, color=[color_map(hash(n)%10) for n in names])
-            idx +=1
+            #ax.bar(x + offset + bar_width/2, mem_data, bar_width, label = names,alpha=0.6, color=[color_map(hash(n)%10) for n in names])
+            offset += len(names)*bar_width + .5*bar_width
             # Set the x-axis ticks and labels
             x_ticks.append(offset)
             x_tick_names.append(key)
+
         ax.set_xticks(x_ticks)
         ax.set_xticklabels(x_tick_names, rotation=45)
+        plt.setp(ax.get_xticklabels()[::2], visible=False)
     
     # Set the axis labels and title
     ax.set_xlabel('Processes')
