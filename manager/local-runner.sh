@@ -160,7 +160,7 @@ if [[ $1 == "fig1rnm" ]];
 then
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1rnm-experiment-server.sh 1 500 max "max 100000" "50000 100000" > ../data/fig1rnm/server.out&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1rnm-experiment-server.sh > ../data/fig1rnm/server.out&
 sleep 30
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1rnm 100 0&
 sleep 30
