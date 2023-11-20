@@ -11,7 +11,7 @@ chmod +x run-fig2-experiment-server.sh
 chmod +x run-fig3-experiment-server.sh
 chmod +x run-fig1-experiment-client.sh
 chmod +x run-fig4-experiment-client.sh
-chmod +x run-fig1rmn-experiment-client.sh
+chmod +x run-fig1rnm-experiment-client.sh
 
 
 sudo apt-get update
