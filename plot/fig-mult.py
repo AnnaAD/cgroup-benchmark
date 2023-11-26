@@ -93,6 +93,21 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
     plt.tight_layout()
     plt.show()
 
+def report_stats(data, log_times):
+    split_time = log_times[-1]["time"]
+    bin_before = [x["latency"]  for x in data if x["time"] < split_time]
+    bin_after = [x["latency"]  for x in data if x["time"] > split_time]
+
+    a = np.array(bin_before)
+    print("P50:", np.percentile(a, 50) )
+    print("P99:", np.percentile(a, 99) )
+
+    a = np.array(bin_after)
+    print("P50:", np.percentile(a, 50) )
+    print("P99:", np.percentile(a, 99) )
+    print("P99:", np.percentile(a, 50) )
+
+
 if __name__ == '__main__':
     if not len(sys.argv) >= 4:
         print('Usage: python script.py <server_log_file_path> <mm_path> <file_path>')
@@ -108,3 +123,4 @@ if __name__ == '__main__':
     log_times = parse_log_timestamps(file_path2)
     mm_through = parse_mm(file_path3)
     plot_latency_over_time(latencies, log_times, mm_through, True)
+    report_stats(latencies, log_times)

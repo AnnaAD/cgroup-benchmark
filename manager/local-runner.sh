@@ -27,6 +27,8 @@ if [[ $1 == "init" ]]
 then
 ssh -i ~/.ssh/cloudlab $SERVER_NODE git clone https://github.com/AnnaAD/cgroup-benchmark.git
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE git clone https://github.com/AnnaAD/cgroup-benchmark.git
+source configure-kernel.sh $SERVER_NODE
+source configure-kernel.sh $CLIENT_NODE
 fi
 
 if [[ $1 == "pull" ]] || [[ $1 == "setup" ]]
@@ -35,13 +37,15 @@ ssh -i ~/.ssh/cloudlab $SERVER_NODE chmod +x cgroup-benchmark/manager/setup.sh
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/setup.sh
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE chmod +x cgroup-benchmark/manager/setup.sh 
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/setup.sh
+source setup-for-benchmarking.sh $SERVER_NODE
+source setup-for-benchmarking.sh $CLIENT_NODE
 fi
 
 if [[ $1 == "fig1" ]];
 then
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 2000 > ../data/fig1-new/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/fig1-new/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1 1 0&
 sleep 60
@@ -80,7 +84,7 @@ ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo rmdir /sys/fs/cgroup/group2
 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 2000 weight 2048 1024 > ../data/fig2-new/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 500 weight 2048 1024 > ../data/fig2-new/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig2 1 0&
 sleep 60
@@ -99,7 +103,7 @@ ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo rmdir /sys/fs/cgroup/group2
 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 2000 max "max 100000" "50000 100000" > ../data/fig2b-new/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 500 max "max 100000" "50000 100000" > ../data/fig2b-new/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig2b 1 0&
 sleep 60
