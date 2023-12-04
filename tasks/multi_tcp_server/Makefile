@@ -15,7 +15,6 @@ all: $(SERVER_BIN) $(CLIENT_BIN) $(SERVER_BIN_MM)
 $(SERVER_BIN): $(SERVER_SRC)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-
 $(SERVER_BIN_MM): $(SERVER_SRC_MM)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
