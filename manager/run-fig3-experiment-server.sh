@@ -20,9 +20,12 @@ cat /sys/fs/cgroup/group2/cpu.$3
 
 
 # start server running
-./tasks/multi_tcp_server/server > fig3-server.out &
+./tasks/multi_tcp_server/server_mm > fig3-server.out &
 echo $! > /sys/fs/cgroup/group1/cgroup.procs
 
+# time check experiment start, wait to start chaos.
+echo $(date)
+sleep 30
 
 echo $(date)
 echo "starting matrix multiply"
