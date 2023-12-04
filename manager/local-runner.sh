@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SERVER_NODE=annaad@amd021.utah.cloudlab.us
-CLIENT_NODE=annaad@amd003.utah.cloudlab.us
+SERVER_NODE=annaad@ms1134.utah.cloudlab.us
+CLIENT_NODE=annaad@ms1114.utah.cloudlab.us
 
 kill_ssh () {
     ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo pkill -9 -f ./cgroup-benchmark/manager/
@@ -43,18 +43,21 @@ fi
 
 if [[ $1 == "fig1" ]];
 then
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm ~/cgroup-benchmark/client-\*fig1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm ~/cgroup-benchmark/mm-1.out
+
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/fig1-new/server.log&
 sleep 1
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1 1 0&
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1 1000 0&
 sleep 60
 
 kill_ssh
 
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/fig1-new/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/fig1-new/
-scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-1fig1.out ../data/fig1-new/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/fig1-new/
 fi
 
 if [[ $1 == "fig1r" ]];
@@ -64,7 +67,7 @@ echo $IP_ADDR
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1r-experiment-server.sh 1 500 > ../data/fig1r/server.out&
 sleep 30
 echo $(date)
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1r 100 0&
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1r 1000 0&
 sleep 30
 echo $(date)
 

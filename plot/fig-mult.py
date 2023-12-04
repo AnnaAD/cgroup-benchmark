@@ -2,6 +2,7 @@ import sys
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import re
+import numpy as np
 
 
 def parse_mm(file_path):
@@ -74,7 +75,7 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
         plt.axvline(x=x["time"], color = "pink")
    
 
-    ax1.set_ylim([0,1.75*10**7])
+    #ax1.set_ylim([0,1.75*10**7])
     ax2 = ax1.twinx()
     ax2.plot([m["time"] for m in mm_through], [m["latency"] for m in mm_through], color = "orange", alpha = 0.6)
     #ax1.set_ylim([-1,1])
@@ -94,6 +95,11 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
     plt.show()
 
 def report_stats(data, log_times):
+    full = []
+    for d in data:
+        full.extend(d)
+    data = full
+
     split_time = log_times[-1]["time"]
     bin_before = [x["latency"]  for x in data if x["time"] < split_time]
     bin_after = [x["latency"]  for x in data if x["time"] > split_time]
@@ -101,11 +107,13 @@ def report_stats(data, log_times):
     a = np.array(bin_before)
     print("P50:", np.percentile(a, 50) )
     print("P99:", np.percentile(a, 99) )
+    print("P99.99:", np.percentile(a, 99.99) )
+
 
     a = np.array(bin_after)
     print("P50:", np.percentile(a, 50) )
     print("P99:", np.percentile(a, 99) )
-    print("P99:", np.percentile(a, 50) )
+    print("P99.99:", np.percentile(a, 99.99) )
 
 
 if __name__ == '__main__':

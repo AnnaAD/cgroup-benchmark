@@ -9,9 +9,9 @@ fi
 DIR=~/.ssh/cloudlab
 
 export LOGIN="annaad"
-export BLKDEV="/dev/sda4"
+export BLKDEV="/dev/nvme0n1p3"
 
-SSHCMD="$LOGIN@$1"
+SSHCMD="$1"
 
 KERNEL=6.1.24
 
@@ -20,29 +20,30 @@ ssh -i $DIR $SSHCMD <<ENDSSH
 sudo chsh -s /bin/bash $LOGIN
 ENDSSH
 
-ssh -i $DIR $SSHCMD <<ENDSSH
-echo "##### $0: user is $LOGIN; block is $BLKDEV; kernel version is $KERNEL. #####"
-sudo mkfs -t ext4 $BLKDEV
-sudo mkdir /data
-sudo mount $BLKDEV /data
-sudo mount $BLKDEV /var/local
-sudo mkdir /var/local/$LOGIN
-sudo chown $LOGIN /var/local/$LOGIN
-sudo blkid $BLKDEV | cut -d \" -f2
-ENDSSH
+# ssh -i $DIR $SSHCMD <<ENDSSH
+# echo "##### $0: user is $LOGIN; block is $BLKDEV; kernel version is $KERNEL. #####"
+# sudo mkfs -t ext4 $BLKDEV
+# sudo mkdir /data
+# sudo mount $BLKDEV /data
+# sudo mount $BLKDEV /var/local
+# sudo mkdir /var/local/$LOGIN
+# sudo chown $LOGIN /var/local/$LOGIN
+# sudo blkid $BLKDEV | cut -d \" -f2
+# ENDSSH
 
-# Use envsubst to ensure the "sudo blkid ...." isn't run locally, but rather is
-# run on the remote machine.
-CMD=$(
-envsubst '$BLKDEV' <<'ENDSSH'
-  echo -e UUID=$(sudo blkid $BLKDEV | cut -d \" -f2)'\t/var/local\text4\tdefaults\t0\t2' | sudo tee -a /etc/fstab
-ENDSSH
-)
-ssh -i $DIR $SSHCMD <<ENDSSH
-  $CMD
-ENDSSH
+# # Use envsubst to ensure the "sudo blkid ...." isn't run locally, but rather is
+# # run on the remote machine.
+# CMD=$(
+# envsubst '$BLKDEV' <<'ENDSSH'
+#   echo -e UUID=$(sudo blkid $BLKDEV | cut -d \" -f2)'\t/var/local\text4\tdefaults\t0\t2' | sudo tee -a /etc/fstab
+# ENDSSH
+# )
+# ssh -i $DIR $SSHCMD <<ENDSSH
+#   $CMD
+# ENDSSH
 
 ssh -i $DIR $SSHCMD <<ENDSSH
+echo HERE
 # Set max journal size
 sudo journalctl --vacuum-size=100M
 

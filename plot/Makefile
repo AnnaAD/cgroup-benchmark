@@ -46,8 +46,11 @@ fig3-2000-20-nocgroup-idle:
 	venv/bin/python fig1.py ../data/fig3-2000-20-nocgroup-idle/client-fig3.out ../data/fig3-2000-20-nocgroup-idle/server.log
 
 
+# fig1-new:
+# 	venv/bin/python fig1-new.py ../data/fig1-new/client-1fig1.out ../data/fig1-new/server.log ../data/fig1-new/mm-1.out
+
 fig1-new:
-	venv/bin/python fig1-new.py ../data/fig1-new/client-1fig1.out ../data/fig1-new/server.log ../data/fig1-new/mm-1.out
+	venv/bin/python fig-mult.py ../data/fig1-new/server.log ../data/fig1-new/mm-1.out ../data/fig1-new/client-*.out
 
 fig2-new:
 	venv/bin/python fig1-new.py ../data/fig2-new/client-1fig2.out ../data/fig2-new/server.log ../data/fig2-new/mm-1.out

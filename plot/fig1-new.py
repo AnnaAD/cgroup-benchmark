@@ -94,11 +94,11 @@ def report_stats(data, log_times):
 
     a = np.array(bin_before)
     print("P50:", np.percentile(a, 50) )
-    print("P99:", np.percentile(a, 99) )
+    print("P99:", np.percentile(a, 99.99) )
 
     a = np.array(bin_after)
     print("P50:", np.percentile(a, 50) )
-    print("P99:", np.percentile(a, 99) )
+    print("P99:", np.percentile(a, 99.99) )
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
