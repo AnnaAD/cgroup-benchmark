@@ -12,14 +12,14 @@ rm -rf ps.log
 sudo mkdir /sys/fs/cgroup/group1
 sudo mkdir /sys/fs/cgroup/group2
 
-echo $4 > /sys/fs/cgroup/group1/cpu.$3
-echo $5 > /sys/fs/cgroup/group2/cpu.$3
+sudo echo $4 > /sys/fs/cgroup/group1/cpu.$3
+sudo echo $5 > /sys/fs/cgroup/group2/cpu.$3
 
-echo /sys/fs/cgroup/group1/cpu.$3
-echo /sys/fs/cgroup/group2/cpu.$3
+sudo echo /sys/fs/cgroup/group1/cpu.$3
+sudo echo /sys/fs/cgroup/group2/cpu.$3
 
-cat /sys/fs/cgroup/group1/cpu.$3
-cat /sys/fs/cgroup/group2/cpu.$3
+sudo cat /sys/fs/cgroup/group1/cpu.$3
+sudo cat /sys/fs/cgroup/group2/cpu.$3
 
 # start server running
 ./tasks/multi_tcp_server/server_mm > fig2-server.out &
