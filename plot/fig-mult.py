@@ -13,8 +13,8 @@ def parse_mm(file_path):
     with open(file_path, 'r') as file:
         i = 0
         for line in file:
-            if(i % 100000 == 0):
-                print(i, "\% done")
+            # if(i % 100000 == 0):
+            #     print(i, "\% done")
 
             match = re.match(pattern, line)
             if match:
@@ -34,8 +34,8 @@ def parse_log_timestamps(file_path):
     with open(file_path, 'r') as file:
         i = 0
         for line in file:
-            if(i % 100000 == 0):
-                print(i, "\% done")
+            # if(i % 100000 == 0):
+            #     print(i, "\% done")
 
             match = re.match(pattern, line)
             if match:
@@ -53,8 +53,8 @@ def parse_latency_data(file_path):
     with open(file_path, 'r') as file:
         i = 0
         for line in file:
-            if(i % 100000 == 0):
-                print(i, "\% done")
+            # if(i % 100000 == 0):
+            #     print(i, "\% done")
 
             match = re.match(pattern, line)
             if match:
@@ -92,7 +92,7 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
     plt.title('Latency Over Time')
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+    plt.savefig("test.pdf")
 
 def report_stats(data, log_times):
     full = []
@@ -101,7 +101,8 @@ def report_stats(data, log_times):
     data = full
 
     split_time = log_times[-1]["time"]
-    bin_before = [x["latency"]  for x in data if x["time"] < split_time]
+    start_time = log_times[0]["time"]
+    bin_before = [x["latency"]  for x in data if x["time"] < split_time and x["time"] > start_time]
     bin_after = [x["latency"]  for x in data if x["time"] > split_time]
 
     a = np.array(bin_before)

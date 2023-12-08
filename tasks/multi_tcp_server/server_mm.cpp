@@ -73,7 +73,7 @@ void handleClient(int clientSocket) {
             // Simulate some processing time (replace this with your actual server logic)
             std::cout << "Recieved Req - " << std::endl;
             
-            matrix_multiply(100,100,100);
+            matrix_multiply(500,500,500);
             // Send a response back to the client
             send(clientSocket, "Server response", 15, 0);
         }
