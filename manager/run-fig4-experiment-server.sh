@@ -18,6 +18,7 @@ done
 
 # time check experiment start, wait to start chaos.
 echo $(date)
+sleep 30
 
 echo $(date)
 echo "starting matrix multiply"
