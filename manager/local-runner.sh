@@ -17,6 +17,8 @@ kill_ssh () {
 
 if [[ "$1" == "pull" ]];
 then
+    ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ clean  -d  -f .
+    ssh -i ~/.ssh/cloudlab $CLIENT_NODE git -C cgroup-benchmark/ clean  -d  -f .
     ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ reset --hard
     ssh -i ~/.ssh/cloudlab $CLIENT_NODE git -C cgroup-benchmark/ reset --hard 
     ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ pull 
@@ -44,11 +46,13 @@ fi
 if [[ $1 == "fig1" ]];
 then
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
-ssh -i ~/.ssh/cloudlab $SERVER_NODE rm ~/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
+
 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/fig1-new/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/fig1-100new/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1 15 0&
 sleep 60
@@ -58,7 +62,7 @@ kill_ssh
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/fig1-100new/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/fig1-100new/
 scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/fig1-100new/
-scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/ethtool.log ../data/fig1-100new/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/fig1-100new/
 fi
 
 if [[ $1 == "fig1r" ]];
@@ -104,8 +108,8 @@ fi
 
 if [[ $1 == "fig2b" ]];
 then
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig2b.out
-ssh -i ~/.ssh/cloudlab $SERVER_NODE rm ~/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf /users/annaad/cgroup-benchmark/client-\*fig2b.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo rmdir /sys/fs/cgroup/group1
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo rmdir /sys/fs/cgroup/group2
 
