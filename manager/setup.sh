@@ -14,8 +14,9 @@ chmod +x run-fig4-experiment-server.sh
 chmod +x run-fig1rnm-experiment-server.sh
 
 
-sudo apt-get update
-sudo apt-get install cgroup-tools
+sudo apt-get update -y
+sudo apt-get install -y cgroup-tools
+sudo apt-get install -y trace-cmd
 apt install python3.10-venv
 
 cd ~/cgroup-benchmark/tasks/tcp_server
