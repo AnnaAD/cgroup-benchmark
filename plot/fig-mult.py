@@ -92,7 +92,7 @@ def plot_latency_over_time(data, log_times, mm_through, mult = False):
     plt.title('Latency Over Time')
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("test.pdf")
+    plt.show()
 
 def report_stats(data, log_times):
     full = []

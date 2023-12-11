@@ -9,7 +9,7 @@
 #include <cstring>
 
 
-void matrix_multiply(int rows1, int cols1, int cols2) {
+void matrix_multiply_malloc(int rows1, int cols1, int cols2) {
      // Allocate memory for matrices
     int **matrix1 = (int **)malloc(rows1 * sizeof(int *));
     int **matrix2 = (int **)malloc(cols1 * sizeof(int *));
@@ -58,6 +58,39 @@ void matrix_multiply(int rows1, int cols1, int cols2) {
     free(matrix2);
     free(result);
 }
+
+#define MAX_ROWS_COLS 100 // Define your maximum size for matrices
+
+void matrix_multiply_stack(int rows1, int cols1, int cols2) {
+    // Declare matrices as arrays on the stack
+    int matrix1[MAX_ROWS_COLS][MAX_ROWS_COLS];
+    int matrix2[MAX_ROWS_COLS][MAX_ROWS_COLS];
+    int result[MAX_ROWS_COLS][MAX_ROWS_COLS];
+
+    // Fill Matrix
+    for (int i = 0; i < rows1; i++) {
+        for (int j = 0; j < cols1; j++) {
+            matrix1[i][j] = rand() % 256;  // Generate a random number between 0 and 255
+        }
+
+        for (int j = 0; j < cols2; j++) {
+            matrix2[i][j] = rand() % 256;  // Generate a random number between 0 and 255
+        }
+    }
+
+    // Matrix Multiplication
+    for (int i = 0; i < rows1; i++) {
+        for (int j = 0; j < cols2; j++) {
+            result[i][j] = 0;  // Initialize result matrix cell to 0
+
+            for (int k = 0; k < cols1; k++) {
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
+        }
+    }
+
+    // No need to free memory when using stack-allocated arrays
+}
 // Function to handle client requests
 void handleClient(int clientSocket) {
     char buffer[1024];
@@ -73,7 +106,7 @@ void handleClient(int clientSocket) {
             // Simulate some processing time (replace this with your actual server logic)
             std::cout << "Recieved Req - " << std::endl;
             
-            matrix_multiply(500,500,500);
+            matrix_multiply_stack(100,100,100);
             // Send a response back to the client
             send(clientSocket, "Server response", 15, 0);
         }
