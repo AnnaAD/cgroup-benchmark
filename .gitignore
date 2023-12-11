@@ -2,3 +2,7 @@
 *.out
 *.o
 *.log
+
+tasks/multi_tcp_server/client
+tasks/multi_tcp_server/server
+tasks/multi_tcp_server/server_mm

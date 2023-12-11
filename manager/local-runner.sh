@@ -55,9 +55,10 @@ sleep 60
 
 kill_ssh
 
-scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/fig1-new/
-scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/fig1-new/
-scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/fig1-new/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/fig1-100new/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/fig1-100new/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/fig1-100new/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/ethtool.log ../data/fig1-100new/
 fi
 
 if [[ $1 == "fig1r" ]];
