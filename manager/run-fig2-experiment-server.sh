@@ -22,7 +22,7 @@ sudo cat /sys/fs/cgroup/group1/cpu.$3
 sudo cat /sys/fs/cgroup/group2/cpu.$3
 
 # start server running
-./tasks/multi_tcp_server/server > fig2-server.out &
+./tasks/multi_tcp_server/server_mm > fig2-server.out &
 echo $! > /sys/fs/cgroup/group1/cgroup.procs
 
 until [[ $(wc -l < fig2-server.out) -gt 5 ]]

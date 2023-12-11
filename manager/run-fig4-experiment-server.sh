@@ -7,7 +7,7 @@ ifconfig | grep 'inet ' | cut -d: -f2
 rm -rf ps.log
 ./manager/monitor.sh &
 # start server running
-./tasks/multi_tcp_server/server > fig1-server.out &
+./tasks/multi_tcp_server/server_mm > fig1-server.out &
 
 
 until [[ $(wc -l < fig1-server.out) -gt 5 ]]
