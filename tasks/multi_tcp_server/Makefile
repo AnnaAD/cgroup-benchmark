@@ -22,6 +22,6 @@ $(CLIENT_BIN): $(CLIENT_SRC)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 clean:
-	rm -f $(SERVER_BIN) $(CLIENT_BIN)
+	rm -f $(SERVER_BIN) $(CLIENT_BIN) $(SERVER_BIN_MM)
 
 .PHONY: all clean
