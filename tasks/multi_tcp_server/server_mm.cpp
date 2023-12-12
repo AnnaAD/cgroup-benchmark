@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <cstring>
+#include <csignal>
 
 
 void matrix_multiply_malloc(int rows1, int cols1, int cols2) {
