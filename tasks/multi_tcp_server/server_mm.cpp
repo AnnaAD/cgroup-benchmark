@@ -124,6 +124,8 @@ int main() {
     std::vector<std::thread> threads;
     const int port = 12345;
 
+    signal(SIGPIPE,SIG_IGN);
+
     // Create a socket
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {

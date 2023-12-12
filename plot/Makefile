@@ -49,35 +49,36 @@ fig3-2000-20-nocgroup-idle:
 # fig1-new:
 # 	venv/bin/python fig1-new.py ../data/fig1-new/client-1fig1.out ../data/fig1-new/server.log ../data/fig1-new/mm-1.out
 
+FIG_EXT = scale
 fig1-new:
-	venv/bin/python fig-mult.py ../data/fig1-new/server.log ../data/fig1-new/mm-1.out ../data/fig1-new/client-*.out
+	venv/bin/python fig-mult.py ../data/fig1-$(FIG_EXT)/server.log ../data/fig1-$(FIG_EXT)/mm-1.out ../data/fig1-$(FIG_EXT)/client-*.out
 
 # fig2-new:
 # 	venv/bin/python fig1-new.py ../data/fig2-new/client-1fig2.out ../data/fig2-new/server.log ../data/fig2-new/mm-1.out
 
 fig2-new:
-	venv/bin/python fig-mult.py ../data/fig2-new/server.log ../data/fig2-new/mm-1.out ../data/fig2-new/client-*.out
+	venv/bin/python fig-mult.py ../data/fig2-$(FIG_EXT)/server.log ../data/fig2-$(FIG_EXT)/mm-1.out ../data/fig2-$(FIG_EXT)/client-*.out
 
 # fig2b-new:
 # 	venv/bin/python fig1-new.py ../data/fig2b-new/client-1fig2b.out ../data/fig2b-new/server.log ../data/fig2b-new/mm-1.out
 
 fig2b-new:
-	venv/bin/python fig-mult.py ../data/fig2b-new/server.log ../data/fig2b-new/mm-1.out ../data/fig2b-new/client-*.out
+	venv/bin/python fig-mult.py ../data/fig2b-$(FIG_EXT)/server.log ../data/fig2b-$(FIG_EXT)/mm-1.out ../data/fig2b-$(FIG_EXT)/client-*.out
 
 fig1r:
 	venv/bin/python fig-mult.py  ../data/fig1r/server.out ../data/fig1r/mm-1.out ../data/fig1r/client-*.out
 
 fig4:
-	venv/bin/python fig-mult.py ../data/fig4/server.out ../data/fig4/mm-1.out ../data/fig4/client-*.out 
+	venv/bin/python fig-mult.py ../data/fig4-$(FIG_EXT)/server.out ../data/fig4-$(FIG_EXT)/mm-1.out ../data/fig4-$(FIG_EXT)/client-*.out 
 
 fig3:
-	venv/bin/python fig-mult.py ../data/fig3/server.out ../data/fig3/mm-1.out ../data/fig3/client-*.out 
+	venv/bin/python fig-mult.py ../data/fig3-$(FIG_EXT)/server.out ../data/fig3-$(FIG_EXT)/mm-1.out ../data/fig3-$(FIG_EXT)/client-*.out 
 
 fig2r:
 	venv/bin/python fig-mult.py ../data/fig2r/server.out ../data/fig2r/mm-1.out ../data/fig2r/client-*.out 
 
 fig3b:
-	venv/bin/python fig-mult.py ../data/fig3b/server.out ../data/fig3b/mm-1.out ../data/fig3b/client-*.out 
+	venv/bin/python fig-mult.py ../data/fig3b-$(FIG_EXT)/server.out ../data/fig3b-$(FIG_EXT)/mm-1.out ../data/fig3b-$(FIG_EXT)/client-*.out 
 
 fig1rnm:
 	venv/bin/python fig-mult.py ../data/fig1rnm/server.out ../data/fig1rnm/mm-1.out ../data/fig1rnm/client-*.out 

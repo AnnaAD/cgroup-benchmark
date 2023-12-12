@@ -238,3 +238,56 @@ scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/fig1rnm/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/fig1rnm/
 scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1rnm.out ../data/fig1rnm/
 fi
+
+
+if [[ $1 == "fig1-scale" ]];
+then
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
+
+DST=fig1-scale
+mkdir ../data/$DST 
+IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
+echo $IP_ADDR
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/$DST/server.log&
+sleep 1
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig1 16 1&
+sleep 30
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo pkill -9 -f ./tasks
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig1 16 1&
+sleep 30
+
+kill_ssh
+
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
+fi
+
+if [[ $1 == "fig2-scale" ]];
+then
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
+
+DST=fig2-scale
+mkdir ../data/$DST 
+IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
+echo $IP_ADDR
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/$DST/server.log&
+sleep 1
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig1 8 1&
+sleep 30
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo pkill -9 -f ./tasks
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig1 8 1&
+
+
+kill_ssh
+
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
+fi

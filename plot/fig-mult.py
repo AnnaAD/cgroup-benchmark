@@ -101,7 +101,7 @@ def report_stats(data, log_times):
     data = full
 
     split_time = log_times[-1]["time"]
-    start_time = log_times[0]["time"]
+    start_time = log_times[0]["time"]+timedelta(0,2) # warmup time
     bin_before = [x["latency"]  for x in data if x["time"] < split_time and x["time"] > start_time]
     bin_after = [x["latency"]  for x in data if x["time"] > split_time]
 
@@ -110,12 +110,18 @@ def report_stats(data, log_times):
     print("P99:", np.percentile(a, 99) )
     print("P99.99:", np.percentile(a, 99.99) )
 
+    plt.hist([bin_before, bin_after],1000, density=True, cumulative=True,
+         histtype='step', label = ["no BE", "with BE"] )
 
     a = np.array(bin_after)
     print("P50:", np.percentile(a, 50) )
     print("P99:", np.percentile(a, 99) )
     print("P99.99:", np.percentile(a, 99.99) )
 
+
+
+    plt.legend()
+    plt.show()
 
 if __name__ == '__main__':
     if not len(sys.argv) >= 4:
