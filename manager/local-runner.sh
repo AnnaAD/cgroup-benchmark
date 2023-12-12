@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SERVER_NODE=annaad@ms0907.utah.cloudlab.us
-CLIENT_NODE=annaad@ms0929.utah.cloudlab.us
+SERVER_NODE=annaad@ms1041.utah.cloudlab.us
+CLIENT_NODE=annaad@ms1020.utah.cloudlab.us
 
 kill_ssh () {
     ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo pkill -9 -f ./cgroup-benchmark/manager/
@@ -17,12 +17,12 @@ kill_ssh () {
 
 if [[ "$1" == "pull" ]];
 then
-    ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ clean  -d  -f .
-    ssh -i ~/.ssh/cloudlab $CLIENT_NODE git -C cgroup-benchmark/ clean  -d  -f .
-    ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ reset --hard
-    ssh -i ~/.ssh/cloudlab $CLIENT_NODE git -C cgroup-benchmark/ reset --hard 
-    ssh -i ~/.ssh/cloudlab $SERVER_NODE git -C cgroup-benchmark/ pull 
-    ssh -i ~/.ssh/cloudlab $CLIENT_NODE git -C cgroup-benchmark/ pull 
+    ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo git -C cgroup-benchmark/ clean  -d  -f .
+    ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo git -C cgroup-benchmark/ clean  -d  -f .
+    ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo git -C cgroup-benchmark/ reset --hard
+    ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo git -C cgroup-benchmark/ reset --hard 
+    ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo git -C cgroup-benchmark/ pull 
+    ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo git -C cgroup-benchmark/ pull 
 fi
 
 if [[ $1 == "init" ]]
@@ -35,9 +35,9 @@ fi
 
 if [[ $1 == "pull" ]] || [[ $1 == "setup" ]]
 then
-ssh -i ~/.ssh/cloudlab $SERVER_NODE chmod +x cgroup-benchmark/manager/setup.sh 
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo chmod +x cgroup-benchmark/manager/setup.sh 
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/setup.sh
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE chmod +x cgroup-benchmark/manager/setup.sh 
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo chmod +x cgroup-benchmark/manager/setup.sh 
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/setup.sh
 source setup-for-benchmarking.sh $SERVER_NODE
 source setup-for-benchmarking.sh $CLIENT_NODE
@@ -49,7 +49,7 @@ ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
 
-DST=fig1-light
+DST=fig1-affinity
 mkdir ../data/$DST 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR

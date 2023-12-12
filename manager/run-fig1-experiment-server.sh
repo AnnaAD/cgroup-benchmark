@@ -8,6 +8,7 @@ rm -rf ps.log
 ./manager/monitor.sh &
 # start server running
 ./tasks/multi_tcp_server/server_mm > fig1-server.out &
+taskset -p $! -c 0-7
 
 
 until [[ $(wc -l < fig1-server.out) -gt 5 ]]
@@ -28,6 +29,7 @@ for i in $(eval echo {1..${1}})
 do
     tasks/matrix_multiplier/venv/bin/python tasks/matrix_multiplier/matrix.py $2 > mm-${i}.out&
     pids[${i}]=$!
+    taskset -p $(pids[${i}]) -c 8-15
     echo $(date)
     #sleep 10
 done
