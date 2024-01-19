@@ -10,6 +10,9 @@ DIR=~/.ssh/cloudlab
 
 ssh -i $DIR $1 <<'ENDSSH'
 
+cat /sys/devices/system/cpu/intel_pstate/no_turbo
+echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
+
 sudo apt-get install cpufrequtils
 
 # Turn off turbo boost.

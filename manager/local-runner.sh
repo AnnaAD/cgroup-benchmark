@@ -162,7 +162,7 @@ if [[ $1 == "fig2r" ]];
 then
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 1 500 weight 2048 1024 > ../data/fig2r/server.out&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 1 500 weight 2048 1024 > ../data/$DST/server.out&
 sleep 30
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig3 100 0&
 sleep 30
@@ -262,13 +262,13 @@ kill_ssh
 
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
-scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*be-fig1.out ../data/$DST/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
 fi
 
 if [[ $1 == "fig2-scale" ]];
 then
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig2.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
 
@@ -276,18 +276,72 @@ DST=fig2-scale
 mkdir ../data/$DST 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 1 500 > ../data/$DST/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 1 500 weight 2048 1024 > ../data/$DST/server.log&
 sleep 1
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig1 8 1&
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig2 16 1&
 sleep 30
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo pkill -9 -f ./tasks
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig1 8 1&
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig2 16 1&
+
+sleep 30
+
+kill_ssh
+
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*be-fig2.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
+fi
+
+if [[ $1 == "fig3-scale" ]];
+then
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig3.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
+
+DST=fig3-scale
+mkdir ../data/$DST 
+IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
+echo $IP_ADDR
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 1 500 weight 2048 1024 > ../data/$DST/server.out&
+sleep 1
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig3 16 1&
+sleep 30
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo pkill -9 -f ./tasks
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig3 16 1&
+sleep 30
 
 
 kill_ssh
 
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
-scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*be-fig3.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
+fi
+
+if [[ $1 == "fig4-scale" ]];
+then
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig4.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
+ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
+
+DST=fig4-scale
+mkdir ../data/$DST 
+IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
+echo $IP_ADDR
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig4-experiment-server.sh 1 500 > ../data/$DST/server.out&
+sleep 1
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR nobe-fig4 16 1&
+sleep 30
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo pkill -9 -f ./tasks
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR be-fig4 16 1&
+sleep 30
+
+kill_ssh
+
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*be-fig4.out ../data/$DST/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
 fi
