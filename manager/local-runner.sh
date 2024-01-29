@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SERVER_NODE=annaad@ms1041.utah.cloudlab.us
-CLIENT_NODE=annaad@ms1020.utah.cloudlab.us
+SERVER_NODE=annaad@amd009.utah.cloudlab.us
+CLIENT_NODE=annaad@amd014.utah.cloudlab.us
 
 kill_ssh () {
     ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo pkill -9 -f ./cgroup-benchmark/manager/

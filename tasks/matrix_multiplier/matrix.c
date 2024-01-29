@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void generate_random_matrix(int rows, int cols, int **matrix) {
     for (int i = 0; i < rows; i++) {
@@ -90,7 +91,8 @@ int main(int argc, char *argv[]) {
         float ds = (float)(t1.tv_sec - t0.tv_sec);
         time_t ltime;
         time(&ltime);
-        printf("%s - Time to multiply : %f s ",ctime(&ltime),  dns + ds);
+        char* ctime_no_newline = strtok(ctime(&ltime), "\n");
+        printf("%s %dx%d matrices: %f seconds\n",ctime_no_newline,rows1, rows1,  dns + ds);
 
     } while(run_);
 
