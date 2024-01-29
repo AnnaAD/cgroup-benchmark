@@ -10,6 +10,15 @@ DIR=~/.ssh/cloudlab
 
 ssh -i $DIR $1 <<'ENDSSH'
 
+
+sudo apt-get update -y
+sudo apt-get install -y cgroup-tools
+sudo apt-get install -y trace-cmd
+apt install python3.10-venv
+
+sudo echo "+cpu" >> /sys/fs/cgroup/cgroup.subtree_control
+sudo echo "+cpuset" >> /sys/fs/cgroup/cgroup.subtree_control
+
 cat /sys/devices/system/cpu/intel_pstate/no_turbo
 echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
 
