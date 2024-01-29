@@ -39,6 +39,10 @@ ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo chmod +x cgroup-benchmark/manager/setup
 ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/setup.sh
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo chmod +x cgroup-benchmark/manager/setup.sh 
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/setup.sh
+fi
+
+if [[ $1 == "setup" ]]
+then
 source setup-for-benchmarking.sh $SERVER_NODE
 source setup-for-benchmarking.sh $CLIENT_NODE
 fi
@@ -53,7 +57,7 @@ DST=fig1
 mkdir ../data/$DST 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 8 500 > ../data/$DST/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-server.sh 8 100 > ../data/$DST/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig1 8 0&
 sleep 60
@@ -61,7 +65,7 @@ sleep 60
 kill_ssh
 
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ps.log ../data/$DST/
-scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-1.out ../data/$DST/
+scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/mm-\*.out ../data/$DST/
 scp -i ~/.ssh/cloudlab $CLIENT_NODE:~/cgroup-benchmark/client-\*fig1.out ../data/$DST/
 scp -i ~/.ssh/cloudlab $SERVER_NODE:~/cgroup-benchmark/ethtool.log ../data/$DST/
 fi

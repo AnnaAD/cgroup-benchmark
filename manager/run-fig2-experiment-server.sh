@@ -41,7 +41,7 @@ echo "starting matrix multiply"
 
 for i in $(eval echo {1..${1}})
 do
-    tasks/matrix_multiplier/venv/bin/python tasks/matrix_multiplier/matrix.py $2 > mm-${i}.out&
+    .tasks/matrix_multiplier/matrix $2 $2 $2 1 > mm-${i}.out&
     pids[${i}]=$!
     echo $! > /sys/fs/cgroup/group2/cgroup.procs
     echo $(date)
