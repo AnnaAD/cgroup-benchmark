@@ -26,7 +26,7 @@ cd ~/cgroup-benchmark/tasks/multi_tcp_server
 make clean; make
 
 cd ~/cgroup-benchmark/tasks/matrix_multiplier
-make clean; make venv
+make clean; make matrix
 
 echo "+cpu" >> /sys/fs/cgroup/cgroup.subtree_control
 echo "+cpuset" >> /sys/fs/cgroup/cgroup.subtree_control
