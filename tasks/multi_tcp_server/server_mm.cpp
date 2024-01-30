@@ -119,9 +119,11 @@ void handleClient(int clientSocket) {
             // Simulate some processing time (replace this with your actual server logic)
             std::cout << "Recieved Req - " << std::endl;
             
-            int spin = add(100);
+            int spin = add(10000);
+            std::string t = std::to_string(spin);
+
             // Send a response back to the client
-            send(clientSocket, "Server response", 15, 0);
+            send(clientSocket, t.c_str(), 15, 0);
         }
     }
 
