@@ -4,6 +4,10 @@
 
 - Turbo-Boost problems: previously, turbo-boost was being turned off via the intel_p folder, however, the experiments were being run on ARM CPUs on cloudlab, so thus, was not working. Switched experimentation to intel core nodes on cloudlab explicitly and the speed-ups with background work stopped!
 
+    - this was with 100x100 matrix multiplication as the server response task.
+    - with summing 100 numbers, the problem of slight speedup still occured with background noise (maybe more clients??).
+        - what is the minimal work required for this to be nessecary?   
+
 - Switched to matrix multiplication implemented in C.
 
 
@@ -80,6 +84,26 @@ P99.99: 60269865.599999264
 ### CDF
 ![all cdf](jan-fig/all-cdf.png)
 
+
+- GREEN: cgroups
+- RED: cgroups and sched-idle
+- ORANGE: no containerization
+
+## Switch Experimentation Configuration
+
+- server now performs a sum of 10,000 random numbers before responding instead of a 100x100 matrix multiplication. I also adjusted the max weight of the background cgroup to be 10%.
+
+#### no cgroups
+![fig](jan-fig/workload/fig1-sum10000.png)
+
+#### cgroups
+![fig](jan-fig/workload/fig12.png)
+
+#### cgroups and sched_idle
+![fig](jan-fig/workload/fig3b.png)
+
+### CDF
+![all cdf](jan-fig/workload/all-cdf.png)
 
 - GREEN: cgroups
 - RED: cgroups and sched-idle

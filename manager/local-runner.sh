@@ -124,7 +124,7 @@ DST=fig2b
 mkdir ../data/$DST 
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 8 100 max "max 100000" "50000 100000" > ../data/$DST/server.log&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig2-experiment-server.sh 8 100 max "max 100000" "10000 100000" > ../data/$DST/server.log&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig2b 8 0&
 sleep 60
@@ -214,7 +214,7 @@ DST=fig3b
 mkdir ../data/$DST
 IP_ADDR=`ssh -i ~/.ssh/cloudlab $SERVER_NODE hostname -I | cut -f2 -d' '`
 echo $IP_ADDR
-ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 8 100 max "max 100000" "50000 100000" > ../data/$DST/server.out&
+ssh -i ~/.ssh/cloudlab $SERVER_NODE sudo ./cgroup-benchmark/manager/run-fig3-experiment-server.sh 8 100 max "max 100000" "10000 100000" > ../data/$DST/server.out&
 sleep 1
 ssh -i ~/.ssh/cloudlab $CLIENT_NODE sudo ./cgroup-benchmark/manager/run-fig1-experiment-client.sh $IP_ADDR fig3b 8 0&
 sleep 60
