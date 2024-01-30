@@ -92,6 +92,18 @@ void matrix_multiply_stack(int rows1, int cols1, int cols2) {
 
     // No need to free memory when using stack-allocated arrays
 }
+
+int add(int n) {
+    int total = 0;
+    for(int i = 0; i < n; i++) {
+        int num1 = rand() % 256;
+        int num2 = rand() % 256;
+
+        int val = num1+num2;
+        total += val;
+    }
+    return total;
+}
 // Function to handle client requests
 void handleClient(int clientSocket) {
     char buffer[1024];
@@ -107,7 +119,7 @@ void handleClient(int clientSocket) {
             // Simulate some processing time (replace this with your actual server logic)
             std::cout << "Recieved Req - " << std::endl;
             
-            matrix_multiply_stack(100,100,100);
+            int spin = add(100);
             // Send a response back to the client
             send(clientSocket, "Server response", 15, 0);
         }
