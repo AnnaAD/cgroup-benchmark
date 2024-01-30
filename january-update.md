@@ -97,7 +97,7 @@ P99.99: 60269865.599999264
 ![fig](jan-fig/workload/fig1-sum10000.png)
 
 #### cgroups
-![fig](jan-fig/workload/fig12.png)
+![fig](jan-fig/workload/fig2.png)
 
 #### cgroups and sched_idle
 ![fig](jan-fig/workload/fig3b.png)
