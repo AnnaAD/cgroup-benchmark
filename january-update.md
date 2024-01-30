@@ -79,3 +79,8 @@ P99.99: 60269865.599999264
 
 ### CDF
 ![all cdf](jan-fig/all-cdf.png)
+
+
+- GREEN: cgroups
+- RED: cgroups and sched-idle
+- ORANGE: no containerization
