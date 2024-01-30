@@ -49,7 +49,7 @@ fi
 
 if [[ $1 == "fig1" ]];
 then
-ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf ~/cgroup-benchmark/client-\*fig1.out
+ssh -i ~/.ssh/cloudlab $CLIENT_NODE rm -rf /users/annaad/cgroup-benchmark/client-\*fig1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/mm-1.out
 ssh -i ~/.ssh/cloudlab $SERVER_NODE rm /users/annaad/cgroup-benchmark/ethtool.log
 

@@ -11,6 +11,7 @@ matrix: matrix.o
 
 clean:
 	rm *.o
+	rm matrix
 
 venv:
 	python3 -m venv venv

@@ -20,7 +20,11 @@ def parse_mm(file_path):
             if match:
                 latency = float(match.group(2))
                 timestamp = match.group(1)
-                data.append({"latency": latency, "time": datetime.strptime(timestamp, "%b %d %Y %H:%M:%S.%f")})
+                try:
+                    data.append({"latency": latency, "time": datetime.strptime(timestamp, "%b %d %Y %H:%M:%S.%f")})
+                except:
+                    data.append({"latency": latency, "time": datetime.strptime(timestamp, "%a %b %d %H:%M:%S %Y")})
+
             i += 1
             
     return data
